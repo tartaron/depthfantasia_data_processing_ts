@@ -1,0 +1,15 @@
+{
+  "name": "depthfantasia_data_processing_front",
+  "version": "1.0.0",
+  "description": "맵 기반 전투 데이터 시각화 플랫폼의 프론트엔드 MVP입니다.",
+  "main": "next.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
