@@ -1,8 +1,0 @@
-{
-  "name": "DepthFantasia",
-  "width": 5120,
-  "height": 7740,
-  "tileSize": 256,
-  "zoomLevels": [10, 11, 12, 13, 14, 15, 16, 17, 18],
-  "bounds": [[0, 0], [8000, 6000]]
-}
