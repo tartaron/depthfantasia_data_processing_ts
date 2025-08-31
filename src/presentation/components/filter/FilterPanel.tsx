@@ -348,7 +348,7 @@ export default function FilterPanel({ battles, onFilterChange }: FilterPanelProp
             )}
             {filters.memberName && (
               <span className="text-xs bg-gray-700 px-2 py-1 rounded">
-                "{filters.memberName}"
+                {`"${filters.memberName}"`}  {/* 백틱(템플릿 리터럴)으로 감싸기 */}
               </span>
             )}
             {(filters.minExp || filters.maxExp) && (

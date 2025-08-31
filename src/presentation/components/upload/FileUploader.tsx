@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState, useRef } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useDropzone, type FileRejection } from 'react-dropzone'
 import { Battle } from '@/domain/entities/Battle'
 
 interface FileUploaderProps {
@@ -51,7 +51,7 @@ export default function FileUploader({ onUpload }: FileUploaderProps) {
       try {
         data = JSON.parse(text)
         updateProgress(50)
-      } catch (parseError) {
+      } catch {
         throw new Error('JSON 파싱 실패: 올바른 JSON 형식이 아닙니다')
       }
 
@@ -159,7 +159,7 @@ export default function FileUploader({ onUpload }: FileUploaderProps) {
     }
   }
 
-  const onDrop = useCallback(async (acceptedFiles: File[], rejectedFiles: any[]) => {
+  const onDrop = useCallback(async (acceptedFiles: File[], rejectedFiles: FileRejection[]) => {
     // 거부된 파일 처리
     if (rejectedFiles.length > 0) {
       const rejected = rejectedFiles[0]
@@ -185,7 +185,8 @@ export default function FileUploader({ onUpload }: FileUploaderProps) {
 
       await processFile(file)
     }
-  }, [onUpload])
+  }, [onUpload, processFile]) // <--- 이 부분을 수정한 것입니다.
+
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
