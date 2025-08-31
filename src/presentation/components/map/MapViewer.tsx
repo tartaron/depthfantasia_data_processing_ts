@@ -50,32 +50,40 @@ export default function MapViewer({ battles, onMarkerClick }: MapViewerProps) {
     // 맵 경계 설정
     const bounds: L.LatLngBoundsExpression = [[0, 0], [7740, 5120]]
     
-    // 배경 사각형
-    L.rectangle(bounds, {
-      color: '#4a5568',
-      fillColor: '#2d3748',
-      fillOpacity: 0.8,
-      weight: 2
-    }).addTo(map)
+    // 1. 기존 배경 및 그리드 코드 삭제
 
-    // 그리드 추가 (1000 단위)
+    // 배경 사각형 -> 이 블록을 삭제합니다.
+    // L.rectangle(bounds, {
+    //   color: '#4a5568',
+    //   fillColor: '#2d3748',
+    //   fillOpacity: 0.8,
+    //   weight: 2
+    // }).addTo(map)
+
+    // 그리드 추가 (1000 단위) -> 이 블록을 삭제합니다.
     // 세로선 (X축)
     for (let x = 0; x <= 5120; x += 1000) {
       L.polyline([[0, x], [7740, x]], { 
-        color: '#4a5568', 
+        color: '#94a3b8', 
         weight: 0.5,
-        opacity: 0.5 
+        opacity: 0.6 
       }).addTo(map)
     }
     
     // 가로선 (Y축)
     for (let y = 0; y <= 7740; y += 1000) {
       L.polyline([[y, 0], [y, 5120]], { 
-        color: '#4a5568', 
+        color: '#94a3b8', 
         weight: 0.5,
-        opacity: 0.5 
+        opacity: 0.6 
       }).addTo(map)
     }
+
+
+    // 2. 삭제한 위치에 이미지 레이어 코드를 추가합니다.
+    // public 폴더 기준의 경로를 사용합니다.
+    const imageUrl = '/images/world_map.png'; // 1단계에서 넣은 이미지 경로
+    L.imageOverlay(imageUrl, bounds).addTo(map);
 
     // 좌표 라벨 표시 (주요 지점만)
     const coordinatePoints = [
